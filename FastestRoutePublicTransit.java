@@ -1,7 +1,7 @@
 /**
  * Public Transit
- * Author: Your Name and Carolyn Yao
- * Does this compile? Y/N
+ * Author: Raphael Winkler and Carolyn Yao
+ * Does this compile? Y
  */
 
 /**
@@ -65,7 +65,7 @@ public class FastestRoutePublicTransit {
         // Find how long the wait for the train from u to v is
         int wait = 0;
         if(freq[u][v] > 0 && times[u] > first[u][v]){
-          wait = (times[u] - first[u][v]) % freq[u][v];
+          wait = freq[u][v] - (times[u] - first[u][v]) % freq[u][v];
         }else if(freq[u][v] > 0){
           wait = first[u][v] - times[u];
         }
@@ -171,6 +171,6 @@ public class FastestRoutePublicTransit {
     // You can create a test case for your implemented method for extra credit below
     int first[][] = new int[][]{{0,14,0,0,0,0,0,5,0},{13,0,6,0,0,0,0,14,0},{0,9,0,14,0,1,0,0,10},{0,0,15,0,12,7,0,0,0},{0,0,0,5,0,10,0,0,0},{0,0,6,9,6,0,14,0,0},{0,0,0,0,0,3,0,2,2},{3,11,0,0,0,0,5,0,2},{0,0,4,0,0,0,1,12,0}};
     int freq[][] = new int[][]{{0,11,0,0,0,0,0,20,0},{8,0,16,0,0,0,0,18,0},{0,7,0,13,0,16,0,0,8},{0,0,5,0,5,15,0,0,0},{0,0,0,13,0,9,0,0,0},{0,0,16,7,12,0,20,0,0},{0,0,0,0,0,13,0,13,8},{12,20,0,0,0,0,6,0,16},{0,0,17,0,0,0,9,19,0}};
-    t.myShortestTravelTime(0,8, 45,lengthTimeGraph, first, freq);
+    t.myShortestTravelTime(0,8, 15,lengthTimeGraph, first, freq);
   }
 }
