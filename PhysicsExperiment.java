@@ -54,7 +54,7 @@ public class PhysicsExperiment {
     		int max = 0, top = 0, count = 0;
     		for(int j = 0; j <= numStudents; j++){
 	    		for(int i = s; i <= numSteps; i++){
-	    			
+
             // Increase count if available, else break
             if(signUpTable[j][i] == 1){
 	    				count++;
