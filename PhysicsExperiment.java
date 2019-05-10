@@ -55,7 +55,8 @@ public class PhysicsExperiment {
     		for(int j = 0; j <= numStudents; j++){
 	    		for(int i = s; i <= numSteps; i++){
 
-            // Increase count if available, else break
+            // Increase count if available, else break 
+            //(there may be indentation problems here on GH that I can't fix for some reason)
             if(signUpTable[j][i] == 1){
 	    				count++;
 	    			}else{
@@ -64,6 +65,7 @@ public class PhysicsExperiment {
 	    		}
 
           // Keep track of the student available for the most successive next steps
+          //(again, there may be indentation problems here on GH that I can't fix for some reason)
           if(count > max){
   					max = count;
   					top = j;
