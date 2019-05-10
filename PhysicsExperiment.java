@@ -63,7 +63,7 @@ public class PhysicsExperiment {
 	    			}
 	    		}
 
-          // Keep track of student available for the most successive next steps
+          // Keep track of the student available for the most successive next steps
 	    		if(count > max){
   					max = count;
   					top = j;

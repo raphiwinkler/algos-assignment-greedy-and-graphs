@@ -64,11 +64,14 @@ public class FastestRoutePublicTransit {
 
         // Find how long the wait for the train from u to v is
         int wait = 0;
-        if(freq[u][v] > 0 && times[u] > first[u][v]){
-          wait = freq[u][v] - (times[u] - first[u][v]) % freq[u][v];
-        }else if(freq[u][v] > 0){
-          wait = first[u][v] - times[u];
+        if(freq[u][v] > 0){
+          if(times[u] <= first[u][v]){
+            wait = first[u][v] - times[u];
+          }else if((times[u] - first[u][v]) % freq[u][v] != 0){
+            wait = freq[u][v] - (times[u] - first[u][v]) % freq[u][v];
+          }
         }
+        
 
         // Update time[v] only if is not processed yet, there is an edge from u to v,
         // and total weight of path from source to v through u plus the waiting time is smaller than current value of time[v]
@@ -77,7 +80,6 @@ public class FastestRoutePublicTransit {
         }
       }
     }
-    printShortestTimes(times);
     return times[T];
   }
 
@@ -169,8 +171,29 @@ public class FastestRoutePublicTransit {
     t.shortestTime(lengthTimeGraph, 0);
 
     // You can create a test case for your implemented method for extra credit below
-    int first[][] = new int[][]{{0,14,0,0,0,0,0,5,0},{13,0,6,0,0,0,0,14,0},{0,9,0,14,0,1,0,0,10},{0,0,15,0,12,7,0,0,0},{0,0,0,5,0,10,0,0,0},{0,0,6,9,6,0,14,0,0},{0,0,0,0,0,3,0,2,2},{3,11,0,0,0,0,5,0,2},{0,0,4,0,0,0,1,12,0}};
-    int freq[][] = new int[][]{{0,11,0,0,0,0,0,20,0},{8,0,16,0,0,0,0,18,0},{0,7,0,13,0,16,0,0,8},{0,0,5,0,5,15,0,0,0},{0,0,0,13,0,9,0,0,0},{0,0,16,7,12,0,20,0,0},{0,0,0,0,0,13,0,13,8},{12,20,0,0,0,0,6,0,16},{0,0,17,0,0,0,9,19,0}};
-    t.myShortestTravelTime(0,8, 15,lengthTimeGraph, first, freq);
+    int first[][] = new int[][]{
+      {0, 14, 0, 0, 0, 0, 0, 5, 0},
+      {13, 0, 6, 0, 0, 0, 0, 14, 0},
+      {0, 9, 0, 14, 0, 1, 0, 0, 10},
+      {0, 0, 15, 0, 12, 7, 0, 0, 0},
+      {0, 0, 0, 5, 0, 10, 0, 0, 0},
+      {0, 0, 6, 9, 6, 0, 14, 0, 0},
+      {0, 0, 0, 0, 0, 3, 0, 2, 2},
+      {3, 11, 0, 0, 0, 0, 5, 0, 2},
+      {0, 0, 4, 0, 0, 0, 1, 12, 0}
+    };
+    int freq[][] = new int[][]{
+      {0, 11, 0, 0, 0, 0, 0, 20, 0},
+      {8, 0, 16, 0, 0, 0, 0, 18, 0},
+      {0, 7, 0, 13, 0, 16, 0, 0, 8},
+      {0, 0, 5, 0, 5, 15, 0, 0, 0},
+      {0, 0, 0, 13, 0, 9, 0, 0, 0},
+      {0, 0, 16, 7, 12, 0, 20, 0, 0},
+      {0, 0, 0, 0, 0, 13, 0, 13, 8},
+      {12, 20, 0, 0, 0, 0, 6, 0, 16},
+      {0, 0, 17, 0, 0, 0, 9, 19, 0}
+    };
+    int S = 0, T = 8, start_time = 15;
+    System.out.println("\nShortest travel time from " + S + " to " + T + " starting at " + start_time + " minutes is: " + t.myShortestTravelTime(S,T, start_time,lengthTimeGraph, first, freq) + " minutes\n");
   }
 }
